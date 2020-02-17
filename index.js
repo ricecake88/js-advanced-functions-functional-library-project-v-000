@@ -109,7 +109,7 @@ const fi = (function() {
       
       let new_array = [...array];
       console.log(new_array)
-      new_array.sort(callback(a))
+      new_array.sort(callback)
       console.log(new_array)
       return new_array;
     },
