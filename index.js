@@ -29,18 +29,17 @@ const fi = (function() {
       return new_array;
     },
     
-    reduce: function(collection, reduce_callback, acc=0) {
-      let val = 0;
-      for (let i = 0; i < collection.length; i++) {
-        if (acc !== 0) {
-          reduce_callback(acc, collection[i], collection)
-          val+=acc          
-        } else {
-          val += reduce_callback(acc, collection[i], collection)
-        }
-        
+    reduce: function(c, reduce_callback, acc=0) {
+      let collection = c.slice(0);
+      if (!acc) {
+        acc = collection[0];
+        collection = collection.slice(1);
       }
-      return val;
+      let len = collection.length;
+      for (let i = 0; i < len; i++) {
+        acc = reduce_callback(acc, collection[i], collection);
+      }
+      return acc;
     },
     
     find: function(collection, predicate) {
